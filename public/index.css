@@ -212,6 +212,9 @@ h1 {
 .output-inner {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .output::after {
@@ -271,6 +274,20 @@ h1 {
   top: 1rem;
   right: 1rem;
   z-index: 2;
+}
+
+/* OUTPUT ASCII LOADER */
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* FOOTER */
