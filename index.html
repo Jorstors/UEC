@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ASCIInator</title>
+  <title>ascii.nator!</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="public/index.css">
@@ -14,13 +14,14 @@
   <div class="container">
     <div class="main-container">
       <div class="user-area">
-        <h1>asciinator!</h1>
+        <h1>ascii.nator</h1>
+        <h4>convert your text to ASCII art!</h4>
         <div class="input">
           <div class="input-inner">
-            <input type="text" placeholder="Enter text here..." id="input"></input>
+            <input type="text" placeholder="enter prompt here..." id="input"></input>
           </div>
+          <button id="convert">convert</button>
         </div>
-        <button id="convert">Convert</button>
         <div class="ascii-arrow">
           <!-- ASCII arrow pointing down -->
           <p>|</p>
@@ -28,11 +29,11 @@
           <p>|</p>
           <p>V</p>
         </div>
-        <div id="output" class="output">
-          <div class="output-inner">
+        <div class="output">
+          <div class="output-inner" id="output">
           </div>
+          <button id="copy">copy</button>
         </div>
-        <button id="copy">Copy</button>
 
       </div>
     </div>
