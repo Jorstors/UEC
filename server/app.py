@@ -8,6 +8,9 @@ import flask
 import sys
 import io
 
+POSITIVE_CHARSET = ' .:-=+*#%@'
+NEGATIVE_CHARSET = POSITIVE_CHARSET[::-1]
+
 # Add image_to_ascii/ as a module search directory
 try:
     sys.path.append(os.path.join(os.path.dirname(__file__), "image_to_ascii"))
@@ -53,7 +56,7 @@ def getArt():
         generate_images(request.args["prompt"])
 
     s = request.args.get("size", 1, type=int)
-    asc = image_to_ascii(filename, size=(s,s), charset=' .:-=+*#%@')
+    asc = image_to_ascii(filename, size=(s,s), charset=NEGATIVE_CHARSET)
 
     return asc
 
