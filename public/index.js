@@ -67,11 +67,13 @@ async function sizeChange(pos) {
     return;
   // Send a request to the backend to send a larger ASCII art
   if (currentSize < 2) currentSize = 2;
-  loadingID = loading();
   const string = userInput;
   const baseUrl = `/get-art?prompt=${appendedPrompts}${string}&size=${currentSize}`;
   const response = await fetch(baseUrl);
-  if (!response.ok) throw new Error("Network response was not ok");
+  if (!response.ok) {
+    loadingID = loading();
+    throw new Error("Network response was not ok");
+  }
   const data = await response.text();
   // Update the output box with the ASCII art
   clearSpinner();
@@ -87,6 +89,11 @@ function debounceSizeChange(func, timeout = 5 * 1000) {
     if (args.at(-1) < 0) currentSize -= 4;
     else currentSize += 4;
 
+    // If no timer is set, call the function immediately
+    if (!timer) {
+      func(...args);
+      return;
+    }
     clearTimeout(timer);
     timer = setTimeout(() => {
       func(...args);
