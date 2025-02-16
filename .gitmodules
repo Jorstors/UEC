@@ -1,3 +1,0 @@
-[submodule "server/image_to_ascii"]
-	path = server/image_to_ascii
-	url = https://github.com/ajratnam/image-to-ascii.git
