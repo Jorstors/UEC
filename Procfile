@@ -1,1 +1,1 @@
-web: git submodule update --init && waitress-serve --port=$PORT wsgi:app
+web: waitress-serve --port=$PORT wsgi:app
