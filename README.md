@@ -1,4 +1,6 @@
-# asciinator
+# Asciinator!
+
+🔗 Available at [**www.asciinator.tech**](http://www.asciinator.tech) or [**asciinator.tech**](http://asciinator.tech)!
 
 Asciinator! – Instantly turns any input into stunning ASCII art. Powered by Janus 7B in Kamiak, it delivers crisp, high-quality designs any way you want. Type, convert, and share your masterpiece!
 
@@ -29,3 +31,12 @@ Our frontend was built with pure HTML/CSS and JS, and our back end was built wit
 ## What's next for Asciinator!
 - Add the ability to connect it to a database of real photos and images such as Pixabay. This would require a bit more fine tuning, but would probably produce more consistent results given a good source of images.
 - Convert colored images to colored ASCII art.
+
+## Built With  
+- **CSS**  
+- **HTML**  
+- **Janus 7B**  
+- **JavaScript**  
+- **Kamiak**  
+- **Linux**  
+- **Python** 
