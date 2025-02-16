@@ -33,9 +33,6 @@ inputButton.addEventListener("click", function () {
   prompt();
 });
 
-// Write dummy text to the output div
-outputBox.innerText = "Hello, World!";
-
 copyButton.addEventListener("click", function () {
   // Copy the text from the output div
   let text = outputBox.innerText;
@@ -70,7 +67,11 @@ function clearSpinner() {
 // API call to backend through HTTPS request
 async function prompt() {
   const string = userInput;
-  const response = await fetch("/get-art?prompt=${string}&size=40");
+  const appendedPrompts =
+    "make a drawing of a high contrast, black and white, minimalistic ";
+  const response = await fetch(
+    "/get-art?prompt=${appendedPrompts}${string}&size=40"
+  );
   const data = await response.text();
   // Update the output box with the ASCII art
   clearSpinner();
