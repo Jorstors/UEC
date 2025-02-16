@@ -4,4 +4,4 @@ numpy
 pillow
 requests
 gunicorn
-wsgi
+mod-wsgi
