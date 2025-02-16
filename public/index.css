@@ -3,6 +3,7 @@
   --primary-color-light: rgba(255, 255, 255, 0.496);
   --background-color: rgb(64, 64, 64);
   --hover-color: rgb(111, 111, 111);
+  --ASCII-font-size: 0.8rem;
 
   font-size: 14px;
   font-family: "Courier New", Courier, monospace;
@@ -36,7 +37,7 @@ input[type="text"]::placeholder {
 }
 
 button {
-  background: transparent;
+  background: var(--background-color);
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   color: var(--primary-color);
@@ -179,7 +180,6 @@ h1 {
   transform: translate(0, -50%);
   width: 6.5rem;
   z-index: 2;
-  background: var(--background-color);
 }
 
 /* ARROW DOWN */
@@ -216,7 +216,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: var(--ASCII-font-size);
+  overflow: hidden;
 }
 
 .output::after {

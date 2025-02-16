@@ -61,7 +61,8 @@ function loading() {
 // Stop the spinner
 function clearSpinner() {
   clearInterval(loadingID);
-  outputBox.style.fontSize = "1.4rem";
+  // Grab variable from css
+  outputBox.style.fontSize = "var(--ASCII-font-size)";
 }
 
 // API call to backend through HTTPS request
@@ -70,7 +71,7 @@ async function prompt() {
   const appendedPrompts =
     "make a drawing of a high contrast, black and white, minimalistic ";
   const response = await fetch(
-    `/get-art?prompt=${appendedPrompts}${string}&size=20`
+    `/get-art?prompt=${appendedPrompts}${string}&size=70`
   );
   const data = await response.text();
   // Update the output box with the ASCII art
