@@ -7,10 +7,10 @@ let loadingID;
 
 inputBox.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
+    userInput = inputBox.value;
     // Clear the input and output boxes
     outputBox.innerText = "";
     inputBox.value = "";
-    userInput = inputBox.value;
     console.log(userInput);
     // If there is a spinner running, clear it
     if (loadingID) clearSpinner();
@@ -21,10 +21,10 @@ inputBox.addEventListener("keyup", function (event) {
 });
 
 inputButton.addEventListener("click", function () {
+  userInput = inputBox.value;
   // Clear the input and output boxes
   outputBox.innerText = "";
   inputBox.value = "";
-  userInput = inputBox.value;
   console.log(userInput);
   // If there is a spinner running, clear it
   if (loadingID) clearSpinner();
@@ -70,7 +70,7 @@ async function prompt() {
   const appendedPrompts =
     "make a drawing of a high contrast, black and white, minimalistic ";
   const response = await fetch(
-    `/get-art?prompt=${appendedPrompts}${string}&size=40`
+    `/get-art?prompt=${appendedPrompts}${string}&size=20`
   );
   const data = await response.text();
   // Update the output box with the ASCII art
