@@ -1,3 +1,38 @@
+:root {
+  --primary-color: white;
+  --background-color: rgb(64, 64, 64);
+
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  color: var(--primary-color);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  font-family: "Courier New", Courier, monospace;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: none;
+  outline: none;
+}
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Courier New", Courier, monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -5,6 +40,7 @@
   align-items: center;
   height: 100vh;
   width: 100%;
+  background: var(--background-color);
 }
 
 .user-area {
@@ -14,14 +50,116 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
   gap: 1rem;
 }
 
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+
+.input {
+  height: 5rem;
+  width: 70vw;
+  border: none;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TEXTBOX */
+#input {
+  height: 5rem;
+  width: 70vw;
+  z-index: -1;
+  border: 4px dashed var(--primary-color);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.input::after {
+  content: "+";
+  position: absolute;
+  left: -6px;
+  top: -13px;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
+}
+
+.input::before {
+  content: "+";
+  position: absolute;
+  right: -6px;
+  top: -13px;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
+}
+
+.input .input-inner::after {
+  content: "+";
+  position: absolute;
+  left: -6px;
+  bottom: -11px;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
+}
+
+.input .input-inner::before {
+  content: "+";
+  position: absolute;
+  right: -6px;
+  bottom: -11px;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
+}
+
+/* ARROW DOWN */
+
+.ascii-arrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: fit-content;
+  width: 10%;
+  text-align: center;
+  position: relative;
+  gap: 1px;
+}
+
+.ascii-arrow p {
+  text-align: center;
+  font-weight: bold;
+}
+
 .output {
-  height: 8rem;
+  height: 20rem;
   width: 70%;
-  border: 2px dashed black;
+  border: 4px dashed var(--primary-color);
   margin: 0 auto;
   position: relative;
 }
@@ -33,9 +171,10 @@
   top: -13px;
   font-weight: bold;
   font-size: 18px;
-  color: black;
-  background: white;
-  padding: 0 10px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
 }
 
 .output::before {
@@ -45,9 +184,10 @@
   top: -13px;
   font-weight: bold;
   font-size: 18px;
-  color: black;
-  background: white;
-  padding: 0 10px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
 }
 
 .output .output-inner::after {
@@ -57,9 +197,10 @@
   bottom: -11px;
   font-weight: bold;
   font-size: 18px;
-  color: black;
-  background: white;
-  padding: 0 10px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
 }
 
 .output .output-inner::before {
@@ -69,7 +210,19 @@
   bottom: -11px;
   font-weight: bold;
   font-size: 18px;
-  color: black;
-  background: white;
-  padding: 0 10px;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  padding: 2px;
+  z-index: 1;
+}
+
+.input::after,
+.input::before,
+.input .input-inner::after,
+.input .input-inner::before,
+.output::after,
+.output::before,
+.output .output-inner::after,
+.output .output-inner::before {
+  font-weight: bold;
 }
