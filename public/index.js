@@ -84,8 +84,8 @@ function debounceSizeChange(func, timeout = 5 * 1000) {
   let timer;
   return (...args) => {
     // Scale the ASCII art up or down
-    if (args.at(-1) < 0) currentSize -= 1;
-    else currentSize += 1;
+    if (args.at(-1) < 0) currentSize -= 4;
+    else currentSize += 4;
 
     clearTimeout(timer);
     timer = setTimeout(() => {
