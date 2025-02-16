@@ -70,13 +70,16 @@ async function prompt() {
   const string = userInput;
   const appendedPrompts =
     "make a drawing of a high contrast, black and white, minimalistic ";
-  const response = await fetch(
-    `/get-art?prompt=${appendedPrompts}${string}&size=70`
-  );
-  const data = await response.text();
-  // Update the output box with the ASCII art
-  clearSpinner();
-  outputBox.innerText = data;
+  const baseUrl = `/get-art?prompt=${appendedPrompts}${string}&size=`
+  for (var i = 2; i < 70; i += 1) {
+      const response = await fetch(
+        baseUrl + i
+      );
+      const data = await response.text();
+      // Update the output box with the ASCII art
+      clearSpinner();
+      outputBox.innerText = data;
+  }
 }
 
 // @app.route("/get-art")
