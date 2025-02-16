@@ -70,7 +70,7 @@ async function prompt() {
   const appendedPrompts =
     "make a drawing of a high contrast, black and white, minimalistic ";
   const response = await fetch(
-    "/get-art?prompt=${appendedPrompts}${string}&size=40"
+    `/get-art?prompt=${appendedPrompts}${string}&size=40`
   );
   const data = await response.text();
   // Update the output box with the ASCII art
