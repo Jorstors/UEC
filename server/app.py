@@ -14,11 +14,7 @@ def getArt():
     s = request.args.get("size", 1, type=int)
     img = image_to_ascii("bookworm-151738_640.png", size=(s,s), charset=' .:-=+*#%@')
 
-    response = '<html>'
-    if s < 100:
-        response += '<head><script>setTimeout(function() {window.location.replace(window.location.href.split("?")[0] + "?size=' + str(s + 1) + '");}, 100);</script>'
-    response += "<body style='background-color: black; color: white'><pre>" + img.replace("\n", "<br />") + "</pre></body></html>"
-    return response
+    return img
 
 @app.route("/")
 def m():
