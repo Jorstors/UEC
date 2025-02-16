@@ -288,6 +288,37 @@ h4 {
   z-index: 2;
 }
 
+.side-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 5rem;
+  right: 1rem;
+  z-index: 2;
+  font-weight: 900;
+  font-size: 2rem;
+  user-select: none;
+}
+
+.side-button:hover {
+  cursor: pointer;
+}
+
+.side-button:active {
+  color: var(--primary-color-light);
+}
+
+#plus-button {
+  position: absolute;
+  top: 35%;
+}
+
+#minus-button {
+  position: absolute;
+  top: 65%;
+}
+
 /* OUTPUT ASCII LOADER */
 
 @keyframes blink {

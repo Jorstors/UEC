@@ -1,3 +1,5 @@
+const appendedPrompts =
+  "make a drawing of a high contrast, black and white, minimalistic ";
 let inputBox = document.getElementById("input");
 let inputButton = document.getElementById("convert");
 let copyButton = document.getElementById("copy");
@@ -5,6 +7,10 @@ let outputBox = document.getElementById("output");
 let userInput = "";
 let loadingID;
 let imageDescriptor = document.getElementById("image-descriptor");
+let plusButton = document.getElementById("plus-button");
+let minusButton = document.getElementById("minus-button");
+let recievedASCII = false;
+let currentSize = 69; // Default size of the ASCII art
 
 inputBox.addEventListener("keyup", function (event) {
   if (event.key === "Enter" && inputBox.value) {
@@ -16,6 +22,7 @@ inputBox.addEventListener("keyup", function (event) {
     // If there is a spinner running, clear it
     if (loadingID) clearSpinner();
     loadingID = loading();
+    recievedASCII = false;
     // Call the API with the user input
     prompt();
   }
@@ -31,6 +38,7 @@ inputButton.addEventListener("click", function () {
   // If there is a spinner running, clear it
   if (loadingID) clearSpinner();
   loadingID = loading();
+  recievedASCII = false;
   // Call the API with the user input
   prompt();
 });
@@ -41,6 +49,52 @@ copyButton.addEventListener("click", function () {
   navigator.clipboard.writeText(text);
   console.log("Copied to clipboard!");
 });
+
+// PLUS MINUS BUTTONS
+plusButton.addEventListener("click", function () {
+  if (!recievedASCII) return;
+  sizeChangeDebounced(1);
+});
+
+minusButton.addEventListener("click", function () {
+  if (!recievedASCII) return;
+  sizeChangeDebounced(-1);
+});
+
+async function sizeChange(pos) {
+  if (!recievedASCII)
+    // Plus button actually shrinks the ASCII art
+    return;
+  // Send a request to the backend to send a larger ASCII art
+  if (currentSize < 2) currentSize = 2;
+  loadingID = loading();
+  const string = userInput;
+  const baseUrl = `/get-art?prompt=${appendedPrompts}${string}&size=${currentSize}`;
+  const response = await fetch(baseUrl);
+  if (!response.ok) throw new Error("Network response was not ok");
+  const data = await response.text();
+  // Update the output box with the ASCII art
+  clearSpinner();
+  outputBox.innerText = data;
+  recievedASCII = true;
+}
+
+// Debounced version of the prompt function
+function debounceSizeChange(func, timeout = 5 * 1000) {
+  let timer;
+  return (...args) => {
+    // Scale the ASCII art up or down
+    if (args.at(-1) < 0) currentSize -= 1;
+    else currentSize += 1;
+
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+}
+
+const sizeChangeDebounced = debounceSizeChange(sizeChange, 1 * 1000);
 
 // ASCII LOADER
 
@@ -70,8 +124,7 @@ function clearSpinner() {
 // API call to backend through HTTPS request
 async function promptAPI() {
   const string = userInput;
-  const appendedPrompts =
-    "make a drawing of a high contrast, black and white, minimalistic ";
+
   const baseUrl = `/get-art?prompt=${appendedPrompts}${string}&size=`;
   for (var i = 2; i < 70; i += 1) {
     try {
@@ -81,6 +134,7 @@ async function promptAPI() {
       // Update the output box with the ASCII art
       clearSpinner();
       outputBox.innerText = data;
+      recievedASCII = true;
     } catch (error) {
       // If an error occurs, display an error message and break the loop
       clearSpinner();
@@ -94,7 +148,7 @@ async function promptAPI() {
         .catch((error) =>
           console.error("Error loading error ASCII art:", error)
         );
-
+      recievedASCII = false;
       // Log the error
       console.error("Error fetching data:", error);
       break;
