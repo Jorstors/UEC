@@ -62,11 +62,19 @@ minusButton.addEventListener("click", function () {
 });
 
 async function sizeChange(pos) {
-  if (!recievedASCII)
-    // Plus button actually shrinks the ASCII art
-    return;
   // Send a request to the backend to send a larger ASCII art
-  if (currentSize < 2) currentSize = 2;
+
+  if (!recievedASCII) return;
+  if (currentSize < 2) {
+    currentSize += 4;
+    return;
+  }
+  if (currentSize >= 77) {
+    currentSize -= 4;
+    return;
+  }
+
+  console.log("Current size:", currentSize);
   const string = userInput;
   const baseUrl = `/get-art?prompt=${appendedPrompts}${string}&size=${currentSize}`;
   const response = await fetch(baseUrl);
