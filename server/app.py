@@ -9,8 +9,12 @@ import sys
 import io
 
 # Add image_to_ascii/ as a module search directory
-sys.path.append(os.path.join(os.path.dirname(__file__), "image_to_ascii"))
-from image_to_ascii.converter import image_to_ascii
+try:
+    sys.path.append(os.path.join(os.path.dirname(__file__), "image_to_ascii"))
+    from converter import image_to_ascii
+except ImportError as e:
+    print("Failed to import image_to_ascii", e.with_traceback())
+    sys.exit(1)
 
 # Function to call the text-to-image generation endpoint
 # Adapted from Janus demo code

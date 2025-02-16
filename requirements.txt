@@ -3,5 +3,5 @@ sty
 numpy
 pillow
 requests
-gunicorn
+waitress
 mod-wsgi
