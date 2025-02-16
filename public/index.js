@@ -4,10 +4,12 @@ let copyButton = document.getElementById("copy");
 let outputBox = document.getElementById("output");
 let userInput = "";
 let loadingID;
+let imageDescriptor = document.getElementById("image-descriptor");
 
 inputBox.addEventListener("keyup", function (event) {
   if (event.key === "Enter" && inputBox.value) {
     userInput = inputBox.value;
+    imageDescriptor.innerText = `"${userInput}"`;
     // Clear the input and output boxes
     outputBox.innerText = "";
     inputBox.value = "";
@@ -22,6 +24,7 @@ inputBox.addEventListener("keyup", function (event) {
 inputButton.addEventListener("click", function () {
   if (!inputBox.value) return;
   userInput = inputBox.value;
+  imageDescriptor.innerText = `"${userInput}"`;
   // Clear the input and output boxes
   outputBox.innerText = "";
   inputBox.value = "";

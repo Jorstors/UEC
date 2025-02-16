@@ -201,6 +201,11 @@ h1 {
   font-weight: bold;
 }
 
+/* RESTATING INPUT */
+#image-descriptor {
+  color: var(--primary-color-light);
+}
+
 .output {
   height: 40rem;
   width: 65vw;
