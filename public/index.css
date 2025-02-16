@@ -210,11 +210,13 @@ h1 {
 }
 
 .output-inner {
+  white-space: pre-wrap;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.4rem;
 }
 
 .output::after {
