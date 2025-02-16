@@ -4,4 +4,3 @@ numpy
 pillow
 requests
 waitress
-mod-wsgi
