@@ -15,6 +15,7 @@ html {
 
 body {
   height: auto;
+  background-color: var(--background-color);
 }
 
 input[type="text"] {
@@ -192,6 +193,7 @@ h1 {
   width: 10%;
   text-align: center;
   position: relative;
+  gap: 1px;
 }
 
 .ascii-arrow p {
@@ -269,6 +271,15 @@ h1 {
   top: 1rem;
   right: 1rem;
   z-index: 2;
+}
+
+/* FOOTER */
+
+p {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input::after,
