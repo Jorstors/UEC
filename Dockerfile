@@ -36,8 +36,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 
-# Expose the port that the application listens on.
-EXPOSE $DOCKER_PORT
+# Port to port forward from the container to the host
+EXPOSE 8080
 
 # Run the application.
 CMD sshpass -e ssh -gnNTf -L 8000:10.110.6.35:8000 -o StrictHostKeyChecking=no $SSHUSER & waitress-serve --host=0.0.0.0 --port=8080 wsgi:app
