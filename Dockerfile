@@ -20,7 +20,8 @@ ENV PYTHONUNBUFFERED=1
 # Install the required packages.
 USER root
 
-RUN apt-get update && apt-get install -y sshpass && rm -rf /var/lib/apt/lists/*
+# Install the required packages (apt, dos2unix, openssh-client).
+RUN apt-get update && apt-get install -y dos2unix && apt-get install -y openssh-client
 
 # Set the working directory in the container to /app.
 WORKDIR /app
@@ -36,8 +37,13 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 
+# Ensure .sh file has proper line endings.
+RUN dos2unix entrypoint.sh
+# Ensure the entrypoint.sh file is executable.
+RUN chmod +x entrypoint.sh
+
 # Port to port forward from the container to the host
 EXPOSE 8080
 
 # Run the application.
-CMD sshpass -e ssh -gnNTf -L 8000:10.110.6.35:8000 -o StrictHostKeyChecking=no $SSHUSER & waitress-serve --host=0.0.0.0 --port=8080 wsgi:app
+CMD ["./entrypoint.sh"]
