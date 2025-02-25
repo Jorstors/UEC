@@ -10,6 +10,7 @@ import io
 
 POSITIVE_CHARSET = ' .:-=+*#%@'
 NEGATIVE_CHARSET = POSITIVE_CHARSET[::-1]
+PROMPT_PREFIX = "make a drawing of a high contrast, black and white, minimalistic "
 
 # Add image_to_ascii/ as a module search directory
 try:
@@ -49,11 +50,13 @@ app = Flask(__name__)
 
 @app.route("/get-art")
 def getArt():
-    filename = request.args.get("prompt") + ".png"
-    if filename is None:
+    if "prompt" not in request.args:
         return "Invalid request: prompt is required"
+
+    prompt = PROMPT_PREFIX + request.args["prompt"]
+    filename = prompt + ".png"
     if not os.path.isfile(filename):
-        generate_images(request.args["prompt"])
+        generate_images(prompt)
 
     s = request.args.get("size", 1, type=int)
     asc = image_to_ascii(filename, size=(s,s), charset=NEGATIVE_CHARSET)
